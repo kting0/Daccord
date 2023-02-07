@@ -11,7 +11,7 @@ import SwiftUI
 struct DaccordApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Daccord()
         }
     }
 }

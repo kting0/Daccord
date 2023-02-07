@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE03A34D2992EF2C00786B6F /* DaccordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE03A34C2992EF2C00786B6F /* DaccordApp.swift */; };
-		AE03A34F2992EF2C00786B6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE03A34E2992EF2C00786B6F /* ContentView.swift */; };
+		AE03A34F2992EF2C00786B6F /* Daccord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE03A34E2992EF2C00786B6F /* Daccord.swift */; };
 		AE03A3512992EF2C00786B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE03A3502992EF2C00786B6F /* Assets.xcassets */; };
 		AE03A3552992EF2C00786B6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE03A3542992EF2C00786B6F /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		AE03A3492992EF2C00786B6F /* Daccord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daccord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE03A34C2992EF2C00786B6F /* DaccordApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaccordApp.swift; sourceTree = "<group>"; };
-		AE03A34E2992EF2C00786B6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AE03A34E2992EF2C00786B6F /* Daccord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daccord.swift; sourceTree = "<group>"; };
 		AE03A3502992EF2C00786B6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE03A3522992EF2C00786B6F /* Daccord.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Daccord.entitlements; sourceTree = "<group>"; };
 		AE03A3542992EF2C00786B6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				AE03A34C2992EF2C00786B6F /* DaccordApp.swift */,
-				AE03A34E2992EF2C00786B6F /* ContentView.swift */,
+				AE03A34E2992EF2C00786B6F /* Daccord.swift */,
 				AE03A3502992EF2C00786B6F /* Assets.xcassets */,
 				AE03A3522992EF2C00786B6F /* Daccord.entitlements */,
 				AE03A3532992EF2C00786B6F /* Preview Content */,
@@ -139,7 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE03A34F2992EF2C00786B6F /* ContentView.swift in Sources */,
+				AE03A34F2992EF2C00786B6F /* Daccord.swift in Sources */,
 				AE03A34D2992EF2C00786B6F /* DaccordApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
