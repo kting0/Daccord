@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SearchResults: View {
+    var searchResults: [Music]
+    
     var body: some View {
         List {
             Section {
-                SearchResultItem()
-                SearchResultItem()
-                SearchResultItem()
+                ForEach(searchResults) { result in
+                    SearchResultItem(music: result)
+                }
             }
             .listSectionSeparator(.hidden)
         }
@@ -24,12 +26,14 @@ struct SearchResults: View {
 
 struct SearchResults_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResults()
+        SearchResults(searchResults: [Music.defaultMusic])
     }
 }
 
 
 struct SearchResultItem: View {
+    var music: Music
+    
     var body: some View {
         NavigationLink(destination: SongDetails()) {
             HStack {
@@ -37,10 +41,14 @@ struct SearchResultItem: View {
                                 .fill(.gray)
                                 .frame(width: 50, height: 50)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Opium (feat. EARTHGANG)")
-                    Text("Gorillaz - Song Machine, Season One: Strange Timez (Deluxe)")
-                        .foregroundColor(.secondary)
-                        .font(.footnote)
+                    if let trackName = music.trackName {
+                        Text(trackName)
+                    }
+                    if let collectionName = music.collectionName {
+                        Text(collectionName)
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                    }
                 }
                 .lineLimit(1)
             }

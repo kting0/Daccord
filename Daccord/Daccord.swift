@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Daccord: View {
+    @EnvironmentObject var fetcher: MusicCollectionFetcher
+    
     @State var searchText: String = ""
     var body: some View {
         NavigationView {
@@ -43,12 +45,19 @@ struct Daccord: View {
                 }
                 
                 if !searchText.isEmpty {
-                    SearchResults()
+                    SearchResults(searchResults: fetcher.searchResults.results)
                 }
             }
             .navigationTitle("Search")
         }
         .searchable(text: $searchText, prompt: "Artists, Songs, Lyrics and More")
+        .onSubmit(of: .search) {
+            Task {
+                do {
+                    try await fetcher.fetchData(query: searchText)
+                }
+            }
+        }
     }
 }
 

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Music: Codable {
+struct Music: Codable, Identifiable {
+    let id = UUID()
     let wrapperType: WrapperType
     let kind: Kind
     let collectionExplicitness, trackExplicitness, artistExplicitness: Explicitness?
