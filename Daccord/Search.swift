@@ -8,13 +8,52 @@
 import SwiftUI
 
 struct Search: View {
+    @Binding var searchText: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ZStack {
+                if searchText.isEmpty {
+                    List {
+                        Section(header: Text("Discover").font(.title2).bold().foregroundColor(.primary)) {
+                            Button {
+                                
+                            } label: {
+                                Text("ABAO")
+                                    .font(.title3)
+                                    .foregroundColor(.accentColor)
+                            }
+                            Button {
+                                
+                            } label: {
+                                Text("ABAO")
+                                    .font(.title3)
+                                    .foregroundColor(.accentColor)
+                            }
+                            Button {
+                                
+                            } label: {
+                                Text("ABAO")
+                                    .font(.title3)
+                                    .foregroundColor(.accentColor)
+                            }
+                        }
+                        .listSectionSeparator(.hidden)
+                    }
+                    .listStyle(.plain)
+                }
+                
+                if !searchText.isEmpty {
+                    SearchResults()
+                }
+            }
+            .navigationTitle("Search")
+        }
+        .searchable(text: $searchText, prompt: "Artists, Songs, Lyrics and More")
     }
 }
 
 struct Search_Previews: PreviewProvider {
     static var previews: some View {
-        Search()
+        Search(searchText: .constant(""))
     }
 }
