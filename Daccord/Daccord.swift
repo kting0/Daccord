@@ -16,21 +16,21 @@ struct Daccord: View {
                     List {
                         Section(header: Text("Discover").font(.title2).bold().foregroundColor(.primary)) {
                             Button {
-                                
+                                searchText = "ABAO"
                             } label: {
                                 Text("ABAO")
                                     .font(.title3)
                                     .foregroundColor(.accentColor)
                             }
                             Button {
-                                
+                                searchText = "ABAO"
                             } label: {
                                 Text("ABAO")
                                     .font(.title3)
                                     .foregroundColor(.accentColor)
                             }
                             Button {
-                                
+                                searchText = "ABAO"
                             } label: {
                                 Text("ABAO")
                                     .font(.title3)
