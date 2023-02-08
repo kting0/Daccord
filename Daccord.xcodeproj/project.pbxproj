@@ -58,9 +58,9 @@
 		AE03A34B2992EF2C00786B6F /* Daccord */ = {
 			isa = PBXGroup;
 			children = (
+				AE03A3502992EF2C00786B6F /* Assets.xcassets */,
 				AE03A34C2992EF2C00786B6F /* DaccordApp.swift */,
 				AE03A34E2992EF2C00786B6F /* Daccord.swift */,
-				AE03A3502992EF2C00786B6F /* Assets.xcassets */,
 				AE03A3522992EF2C00786B6F /* Daccord.entitlements */,
 				AE03A3532992EF2C00786B6F /* Preview Content */,
 				AE03A35B2992F04900786B6F /* Search.swift */,
