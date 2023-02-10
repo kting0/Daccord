@@ -58,8 +58,8 @@ struct SearchResultItem: View {
                     if let trackName = music.trackName {
                         Text(trackName)
                     }
-                    if let collectionName = music.collectionName {
-                        Text(collectionName)
+                    if let artistAndCollectionName = music.artistAndCollectionName {
+                        Text(artistAndCollectionName)
                             .foregroundColor(.secondary)
                             .font(.footnote)
                     }
