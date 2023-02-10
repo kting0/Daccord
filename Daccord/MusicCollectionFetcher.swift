@@ -11,19 +11,19 @@ class MusicCollectionFetcher: ObservableObject {
     @Published var searchResults = MusicCollection(resultCount: nil, results: [Music.defaultMusic])
     @Published var currentMusic = Music.defaultMusic
     
-        enum FetchError: Error {
+    enum FetchError: Error {
         case badRequest
     }
     
     func fetchData(query: String, offset: Int = 0) async
-     throws  {
+    throws  {
         let urlString = "https://itunes.apple.com/search?term=\(query)&media=music&offset=\(offset)&limit=10"
         print(urlString)
         guard let url = URLComponents(string: urlString)?.url else { return }
-         
+        
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw FetchError.badRequest }
-
+        
         Task { @MainActor in
             searchResults = try JSONDecoder().decode(MusicCollection.self, from: data)
             print(searchResults)
