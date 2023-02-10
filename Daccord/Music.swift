@@ -15,6 +15,13 @@ struct Music: Codable, Identifiable {
     let collectionExplicitness, trackExplicitness, artistExplicitness: Explicitness?
     let collectionName, trackName, artistName, collectionCensoredName, trackCensoredName, artistCensoredName, collectionArtistName: String?
     let artistViewURL, collectionViewURL, trackViewURL, previewURL, artworkUrl30, artworkUrl60, artworkUrl100, collectionArtistViewURL: String?
+    var artworkUrl600: String? {
+        if let artworkUrl100 = artworkUrl100 {
+            return artworkUrl100.replacingOccurrences(of: "100x100", with: "600x600")
+        } else {
+            return nil
+        }
+    }
     let country, currency, primaryGenreName, contentAdvisoryRating, releaseDate: String?
     let artistID, collectionID, trackID, discCount, discNumber, trackCount, trackNumber, trackTimeMillis, collectionArtistID: Int?
     let collectionPrice, trackPrice: Double?
