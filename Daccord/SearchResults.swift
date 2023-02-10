@@ -37,9 +37,23 @@ struct SearchResultItem: View {
     var body: some View {
         NavigationLink(destination: SongDetails()) {
             HStack {
-                RoundedRectangle(cornerRadius: 2, style: .continuous)
-                                .fill(.gray)
-                                .frame(width: 50, height: 50)
+                VStack{
+                    if let artworkUrl600 = music.artworkUrl600 {
+                        AsyncImage(url: URL(string: artworkUrl600)) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        } placeholder: {
+                            Color.gray.opacity(0.1)
+                        }
+                    } else {
+                        Rectangle()
+                            .fill(.gray)
+                    }
+                }
+                .frame(width: 50, height: 50)
+                .cornerRadius(2)
+                
                 VStack(alignment: .leading, spacing: 2) {
                     if let trackName = music.trackName {
                         Text(trackName)
