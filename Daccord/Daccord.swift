@@ -59,7 +59,7 @@ struct Daccord: View {
             }
             .navigationTitle("Search")
         }
-        .searchable(text: $searchText, prompt: "Artists, Songs, Lyrics and More")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Artists, Songs, Lyrics and More")
         .onSubmit(of: .search) {
             Task {
                 await doSearch()
