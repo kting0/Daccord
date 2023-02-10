@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct DaccordApp: App {
-    @StateObject private var fetcher = MusicCollectionFetcher()
+    @StateObject private var fetcher = DataFetcher()
     
     var body: some Scene {
         WindowGroup {

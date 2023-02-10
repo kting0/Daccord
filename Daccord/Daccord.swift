@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Daccord: View {
-    @EnvironmentObject var fetcher: MusicCollectionFetcher
+    @EnvironmentObject var fetcher: DataFetcher
     
     @State var searchText: String = ""
     var body: some View {

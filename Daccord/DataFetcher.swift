@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class MusicCollectionFetcher: ObservableObject {
+class DataFetcher: ObservableObject {
     @Published var searchResults = MusicCollection(resultCount: nil, results: [Music.defaultMusic])
     @Published var currentMusic = Music.defaultMusic
     
