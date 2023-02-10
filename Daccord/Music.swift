@@ -14,6 +14,27 @@ struct Music: Codable, Identifiable {
     let kind: Kind
     let collectionExplicitness, trackExplicitness, artistExplicitness: Explicitness?
     let collectionName, trackName, artistName, collectionCensoredName, trackCensoredName, artistCensoredName, collectionArtistName: String?
+    /* artistAndCollectionName is determined by artistName & collectionName.
+       It's
+         1. "artistName - collectionName" if both not nil,
+         2. only "artistName" or "collectionName" if other variable is nil, or
+         3. nil if both are nil.
+     */
+    var artistAndCollectionName: String? {
+        if let artistName = artistName {
+            if let collectionName = collectionName {
+                return "\(artistName) - \(collectionName)"
+            } else {
+                return artistName
+            }
+        } else {
+            if let collectionName = collectionName {
+                return collectionName
+            } else {
+                return nil
+            }
+        }
+    }
     let artistViewURL, collectionViewURL, trackViewURL, previewURL, artworkUrl30, artworkUrl60, artworkUrl100, collectionArtistViewURL: String?
     var artworkUrl600: String? {
         if let artworkUrl100 = artworkUrl100 {
