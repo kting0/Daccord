@@ -19,22 +19,31 @@ struct Daccord: View {
                         Section(header: Text("Discover").font(.title2).bold().foregroundColor(.primary)) {
                             Button {
                                 searchText = "ABAO"
+                                Task {
+                                    await doSearch()
+                                }
                             } label: {
                                 Text("ABAO")
                                     .font(.title3)
                                     .foregroundColor(.accentColor)
                             }
                             Button {
-                                searchText = "ABAO"
+                                searchText = "Lady Gaga"
+                                Task {
+                                    await doSearch()
+                                }
                             } label: {
-                                Text("ABAO")
+                                Text("Lady Gaga")
                                     .font(.title3)
                                     .foregroundColor(.accentColor)
                             }
                             Button {
-                                searchText = "ABAO"
+                                searchText = "五月天"
+                                Task {
+                                    await doSearch()
+                                }
                             } label: {
-                                Text("ABAO")
+                                Text("五月天")
                                     .font(.title3)
                                     .foregroundColor(.accentColor)
                             }
@@ -53,12 +62,19 @@ struct Daccord: View {
         .searchable(text: $searchText, prompt: "Artists, Songs, Lyrics and More")
         .onSubmit(of: .search) {
             Task {
-                do {
-                    try await fetcher.fetchData(query: searchText)
-                }
+                await doSearch()
             }
         }
     }
+    
+    func doSearch() async {
+        do {
+            try await fetcher.fetchData(query: searchText)
+        } catch {
+            print("error")
+        }
+    }
+    
 }
 
 struct Search_Previews: PreviewProvider {
@@ -66,3 +82,5 @@ struct Search_Previews: PreviewProvider {
         Daccord(searchText: "")
     }
 }
+
+
