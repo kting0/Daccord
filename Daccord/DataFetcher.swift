@@ -11,13 +11,26 @@ class DataFetcher: ObservableObject {
     @Published var searchResults = MusicCollection(resultCount: nil, results: [Music.defaultMusic])
     @Published var currentMusic = Music.defaultMusic
     
+    enum FetchType {
+        case collection
+        case track
+    }
+    
     enum FetchError: Error {
         case badRequest
     }
-    
-    func fetchData(query: String, offset: Int = 0) async
+        
+    func fetchData(fetchType: FetchType, query: String, offset: Int = 0) async
     throws  {
-        let urlString = "https://itunes.apple.com/search?term=\(query)&media=music&offset=\(offset)&limit=10"
+        var urlString: String
+        
+        switch fetchType {
+        case .track:
+            urlString = "https://itunes.apple.com/search?term=\(query)&media=music&offset=\(offset)&limit=10"
+        case .collection:
+            urlString = "https://itunes.apple.com/lookup?id=\(query)"
+        }
+        
         print(urlString)
         guard let url = URLComponents(string: urlString)?.url else { return }
         
@@ -25,8 +38,14 @@ class DataFetcher: ObservableObject {
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw FetchError.badRequest }
         
         Task { @MainActor in
-            searchResults = try JSONDecoder().decode(MusicCollection.self, from: data)
-            print(searchResults)
+            switch fetchType {
+            case .collection:
+                searchResults = try JSONDecoder().decode(MusicCollection.self, from: data)
+                print(searchResults)
+            case .track:
+                currentMusic = try JSONDecoder().decode(Music.self, from: data)
+                print(currentMusic)
+            }
         }
     }
 }
