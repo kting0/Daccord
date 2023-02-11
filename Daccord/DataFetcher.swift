@@ -25,9 +25,9 @@ class DataFetcher: ObservableObject {
         var urlString: String
         
         switch fetchType {
-        case .track:
-            urlString = "https://itunes.apple.com/search?term=\(query)&media=music&offset=\(offset)&limit=10"
         case .collection:
+            urlString = "https://itunes.apple.com/search?term=\(query)&media=music&offset=\(offset)&limit=10"
+        case .track:
             urlString = "https://itunes.apple.com/lookup?id=\(query)"
         }
         
@@ -43,7 +43,8 @@ class DataFetcher: ObservableObject {
                 searchResults = try JSONDecoder().decode(MusicCollection.self, from: data)
                 print(searchResults)
             case .track:
-                currentMusic = try JSONDecoder().decode(Music.self, from: data)
+                let lookupResult = try JSONDecoder().decode(MusicCollection.self, from: data)
+                currentMusic = lookupResult.results[0]
                 print(currentMusic)
             }
         }

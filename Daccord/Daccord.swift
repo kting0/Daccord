@@ -69,7 +69,7 @@ struct Daccord: View {
     
     func doSearch() async {
         do {
-            try await fetcher.fetchData(query: searchText)
+            try await fetcher.fetchData(fetchType: .collection, query: searchText)
         } catch {
             print("error")
         }

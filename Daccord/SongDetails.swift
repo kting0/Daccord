@@ -8,23 +8,44 @@
 import SwiftUI
 
 struct SongDetails: View {
+    var trackID: Int?
+    @EnvironmentObject var fetcher: DataFetcher
+    
     var body: some View {
         VStack(spacing: 20) {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.gray)
-                            .frame(width: 250, height: 250)
-                            .shadow(color: .gray, radius: 15)
+            VStack {
+                if let artworkUrl600 = fetcher.currentMusic.artworkUrl600 {
+                    AsyncImage(url: URL(string: artworkUrl600)) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    } placeholder: {
+                        Color.gray.opacity(0.1)
+                    }
+                } else {
+                    Rectangle()
+                        .fill(.gray)
+                }
+            }
+            .frame(width: 250, height: 250)
+            .cornerRadius(10)
             VStack(spacing: 5) {
-                Text("Opium (feat. EARTHGANG)")
-                    .bold()
-                Text("Gorillaz")
-                    .foregroundColor(.secondary)
-                + Text(Image(systemName: "chevron.forward"))
-                    .foregroundColor(.secondary)
-                Text("Song Machine, Season One: Strange Timez (Deluxe)")
-                    .foregroundColor(.secondary)
-                + Text(Image(systemName: "chevron.forward"))
-                    .foregroundColor(.secondary)
+                if let trackName = fetcher.currentMusic.trackName {
+                    Text(trackName)
+                        .bold()
+                }
+                if let artistName = fetcher.currentMusic.artistName {
+                    Text(artistName)
+                        .foregroundColor(.secondary)
+                    + Text(Image(systemName: "chevron.forward"))
+                        .foregroundColor(.secondary)
+                }
+                if let collectionName = fetcher.currentMusic.collectionName {
+                    Text(collectionName)
+                        .foregroundColor(.secondary)
+                    + Text(Image(systemName: "chevron.forward"))
+                        .foregroundColor(.secondary)
+                }
             }
             .font(.title3)
             .multilineTextAlignment(.center)
@@ -37,12 +58,26 @@ struct SongDetails: View {
                 .buttonStyle(.bordered)
                 .controlSize(.large)
             }
-            Text("Released 2000/01/01")
+            if let releaseDate = fetcher.currentMusic.releaseDate {
+                VStack {
+                    Text("Released ")
+                    + Text(releaseDate)
+                }
                 .foregroundColor(.secondary)
                 .font(.footnote)
                 .bold()
+            }
         }
         .padding()
+        .task {
+            if let trackID = trackID {
+                do {
+                    try await fetcher.fetchData(fetchType: .track, query: String(trackID))
+                } catch {
+                    print("track error")
+                }
+            }
+        }
     }
 }
 

@@ -35,7 +35,7 @@ struct SearchResultItem: View {
     var music: Music
     
     var body: some View {
-        NavigationLink(destination: SongDetails()) {
+        NavigationLink(destination: SongDetails(trackID: music.trackID)) {
             HStack {
                 VStack{
                     if let artworkUrl600 = music.artworkUrl600 {
